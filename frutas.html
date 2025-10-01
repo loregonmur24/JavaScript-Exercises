@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección de Frutas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, input, button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #resultado {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍎 Selecciona tus Frutas Favoritas</h1>
+    
+    <form id="formularioFrutas">
+        <div class="form-group">
+            <label for="nombre">Tu nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div class="form-group">
+            <label for="fruta">Elige tu fruta favorita:</label>
+            <select id="fruta" name="fruta" required>
+                <option value="">-- Selecciona una fruta --</option>
+                <option value="manzana">🍎 Manzana</option>
+                <option value="naranja">🍊 Naranja</option>
+                <option value="platano">🍌 Plátano</option>
+                <option value="fresa">🍓 Fresa</option>
+                <option value="uva">🍇 Uva</option>
+                <option value="sandia">🍉 Sandía</option>
+                <option value="piña">🍍 Piña</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" name="cantidad" min="1" max="10" value="1" required>
+        </div>
+
+        <div class="form-group">
+            <label>¿Cómo la prefieres?</label><br>
+            <input type="radio" id="fresca" name="preferencia" value="fresca" checked>
+            <label for="fresca">Fresca</label><br>
+            
+            <input type="radio" id="jugo" name="preferencia" value="jugo">
+            <label for="jugo">En jugo</label><br>
+            
+            <input type="radio" id="ensalada" name="preferencia" value="ensalada">
+            <label for="ensalada">En ensalada</label>
+        </div>
+
+        <button type="submit">Enviar Selección</button>
+    </form>
+
+    <div id="resultado" style="display: none;">
+        <h2>Tu Selección:</h2>
+        <p id="infoSeleccion"></p>
+    </div>
+
+    <script>
+        document.getElementById('formularioFrutas').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener los valores del formulario
+            const nombre = document.getElementById('nombre').value;
+            const fruta = document.getElementById('fruta').value;
+            const cantidad = document.getElementById('cantidad').value;
+            const preferencia = document.querySelector('input[name="preferencia"]:checked').value;
+            
+            // Crear el mensaje con la información
+            const mensaje = `
+                <strong>Hola ${nombre}!</strong><br><br>
+                Has seleccionado:<br>
+                • Fruta: ${fruta}<br>
+                • Cantidad: ${cantidad}<br>
+                • Preferencia: ${preferencia}<br><br>
+                ¡Disfruta tus frutas! 🍓
+            `;
+            
+            // Mostrar el resultado
+            document.getElementById('infoSeleccion').innerHTML = mensaje;
+            document.getElementById('resultado').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
